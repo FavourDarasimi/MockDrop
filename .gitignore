@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+
+# Environment — never commit a Redis connection string
+.env
+.env.local
+.env*.local
+
+*.tsbuildinfo
+next-env.d.ts
+
+# Hallmark design-system memory (local build history; commit if you want it shared)
+.hallmark/
+
+
+DESIGN.md
+PRD.md

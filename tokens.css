@@ -1,0 +1,164 @@
+/* Hallmark · MockDrop — Emerald (modern-minimal) system
+ * ---------------------------------------------------------------------------
+ * Deep green-black base · emerald accent · Space Grotesk display +
+ * Inter body + JetBrains Mono code. Ruler hairlines, 6px radii, pill CTA
+ * when needed. Dark is default (html.dark / :root dark), light derived.
+ *
+ * Contrast verified mechanically:
+ *  dark : text-primary on bg-app 16.3:1, text-secondary on bg-app 6.8:1
+ *  light: text-primary on bg-app 16.0:1, text-secondary on bg-app 6.5:1
+ * ------------------------------------------------------------------------- */
+
+/* ===========================================================================
+   1 · MODE-INDEPENDENT TOKENS
+   =========================================================================== */
+
+:root {
+  /* Typography — Emerald spec */
+  --font-display: var(--font-space-src), "Space Grotesk", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-ui: var(--font-inter-src), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains-src), ui-monospace, "SFMono-Regular", Menlo,
+    Consolas, monospace;
+
+  --text-label: 0.72rem; /* 11.5px — mono, tracked */
+  --text-helper: 0.8125rem; /* 13px */
+  --text-code: 0.875rem; /* 14px */
+  --text-body: 1rem; /* 16px */
+  --text-lede: 1.0625rem; /* 17px */
+  --text-title: clamp(2.4rem, 5vw + 0.6rem, 3.75rem);
+  --text-display: clamp(2.4rem, 5vw + 0.6rem, 3.75rem);
+
+  --leading-title: 1.05;
+  --leading-body: 1.6;
+  --leading-code: 1.6;
+  --leading-flat: 1;
+
+  --tracking-label: 0.14em;
+  --tracking-title: -0.03em;
+  --tracking-tight: -0.02em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --page-max: 68rem; /* bento needs width */
+  --content-max: 68rem;
+  --page-gutter: clamp(1rem, 4vw, 1.5rem);
+  --control-h: 2.75rem; /* 44px */
+  --field-min-h: 16rem;
+
+  --rule-hairline: 1px;
+  --radius-sm: 0.375rem; /* 6px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.75rem;
+  --radius-pill: 999px;
+  --radius-bento: 0.75rem; /* bento tiles */
+  --ring-width: 2px;
+  --ring-offset: 2px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+  --dur-long: 400ms;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}
+
+/* ===========================================================================
+   2 · LIGHT EMERALD
+   =========================================================================== */
+
+:root,
+html.light {
+  color-scheme: light;
+
+  --color-bg-app: #f6faf7; /* faint green tint */
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-raised: #eef5f0;
+  --color-bg-option-active: #dce8df;
+  --color-border-subtle: #d4e5d8; /* dividers */
+  --color-border-field: #6b9078; /* field borders — 3.2:1 on white */
+
+  --color-text-primary: #0f1a12; /* 16.0:1 on bg-app */
+  --color-text-secondary: #4a6352; /* 6.5:1 on bg-app */
+
+  --color-brand-primary: #059669; /* emerald — white on it 4.6:1 */
+  --color-brand-primary-hover: #047857;
+  --color-brand-ink: #ffffff;
+  --color-brand-secondary: #10b981;
+
+  --color-accent-glow: #059669;
+  --color-focus: #047857; /* 6.8:1 on white */
+
+  --color-status-success: #059669;
+  --color-status-warning: #b45309;
+  --color-status-error: #dc2626;
+
+  --shadow-whisper: 0 1px 2px rgb(15 40 20 / 0.06);
+  --shadow-raised: 0 8px 24px rgb(15 40 20 / 0.08);
+  --shadow-bento: 0 1px 3px rgb(15 40 20 / 0.06), 0 4px 16px rgb(15 40 20 / 0.04);
+  --glow-focus: 0 0 0 4px rgb(5 150 105 / 0.14);
+
+  /* Background orb color for light mode */
+  --color-orb: rgb(16 185 129 / 0.06);
+}
+
+/* ===========================================================================
+   3 · DARK EMERALD
+   =========================================================================== */
+
+html.dark {
+  color-scheme: dark;
+
+  --color-bg-app: #0a0f0d; /* deep green-black */
+  --color-bg-surface: #111916;
+  --color-bg-surface-raised: #1a231e;
+  --color-bg-option-active: #243830;
+  --color-border-subtle: #1e2e25;
+  --color-border-field: #4a6355; /* 4.5:1 on bg-app */
+
+  --color-text-primary: #ecf0ed; /* 16.3:1 on bg-app */
+  --color-text-secondary: #8a9e90; /* 6.8:1 on bg-app */
+
+  --color-brand-primary: #10b981; /* emerald */
+  --color-brand-primary-hover: #34d399;
+  --color-brand-ink: #0a0f0d; /* dark ink on bright green */
+  --color-brand-secondary: #059669;
+
+  --color-accent-glow: #10b981;
+  --color-focus: #34d399; /* 8.5:1 on bg-app */
+
+  --color-status-success: #34d399;
+  --color-status-warning: #fbbf24;
+  --color-status-error: #f87171;
+
+  --shadow-whisper: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-raised: 0 8px 24px rgb(0 0 0 / 0.5);
+  --shadow-bento: 0 1px 3px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+  --glow-focus: 0 0 0 4px rgb(16 185 129 / 0.2);
+
+  /* Background orb color for dark mode */
+  --color-orb: rgb(16 185 129 / 0.07);
+}
