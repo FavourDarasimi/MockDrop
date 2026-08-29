@@ -6,6 +6,8 @@ MockDrop is a lightweight, zero-friction developer tool designed to bridge the g
 
 Mocks are ephemeral by design and automatically expire after **24 hours**.
 
+**Live Demo:** Deployed on PXXL — [https://mockdrop.pxxl.click](https://mockdrop.pxxl.click) 
+
 ---
 
 ## ⚡ Features
@@ -23,7 +25,7 @@ Mocks are ephemeral by design and automatically expire after **24 hours**.
 - **Framework**: Next.js (App Router)
 - **Styling**: Tailwind CSS & Vanilla CSS (Tokens-based design system)
 - **Database**: Redis (used for ephemeral storage with Key TTLs)
-- **Deployment**: Vercel & Redis Cloud
+- **Deployment**: PXXL & Redis Cloud
 
 ---
 

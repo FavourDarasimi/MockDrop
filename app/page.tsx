@@ -2,6 +2,53 @@ import Composer from "@/components/Composer";
 import CursorGlow from "@/components/CursorGlow";
 import ThemeToggle from "@/components/ThemeToggle";
 
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is MockDrop?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "MockDrop is a free tool to paste JSON and get a live, CORS-enabled REST API endpoint in 2 seconds. No signup required. Mocks expire after 24 hours.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I create a mock API?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Paste a JSON object or array, choose a status code (200, 404, 500), click Generate endpoint, and copy the URL. Use it with fetch, axios, or Postman.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is the mock API CORS-enabled?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. All mock endpoints return Access-Control-Allow-Origin: * so you can fetch them directly from localhost or any frontend.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How long do mocks live?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "24 hours. Mocks are stored in Redis with a TTL and auto-delete. No history is kept.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do I need an account?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. MockDrop is zero-friction — no signup, no API key, no project setup.",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <div className="relative flex min-h-dvh flex-col overflow-x-clip bg-app text-primary bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2740%27%20height%3D%2740%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cpath%20d%3D%27M20%201L39%2020L20%2039L1%2020Z%27%20fill%3D%27none%27%20stroke%3D%27%230f1a12%27%20stroke-width%3D%270.5%27%20opacity%3D%270.12%27/%3E%3C/svg%3E')] bg-[length:40px_40px] dark:bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2740%27%20height%3D%2740%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cpath%20d%3D%27M20%201L39%2020L20%2039L1%2020Z%27%20fill%3D%27none%27%20stroke%3D%27%23ecf0ed%27%20stroke-width%3D%270.5%27%20opacity%3D%270.08%27/%3E%3C/svg%3E')]">
@@ -43,6 +90,43 @@ export default function Home() {
       <main className="w-full max-w-[68rem] mx-auto px-4 sm:px-6">
         <Composer />
       </main>
+
+      {/* SEO: secondary content — visible, keyword-rich, no design disruption */}
+      <section
+        className="w-full max-w-[68rem] mx-auto px-4 sm:px-6 mt-12 grid gap-6 md:grid-cols-3"
+        aria-labelledby="how-it-works-heading"
+      >
+        <h2 id="how-it-works-heading" className="sr-only">
+          How MockDrop works for frontend developers
+        </h2>
+        <article className="bg-surface border border-hairline rounded-xl p-5">
+          <h3 className="font-display text-base font-semibold tracking-tight">For frontend prototypes</h3>
+          <p className="mt-2 text-sm leading-6 text-secondary">
+            Test your UI without waiting for the backend. Generate a real HTTP GET endpoint from any JSON and
+            fetch it from localhost, staging, or CodeSandbox.
+          </p>
+        </article>
+        <article className="bg-surface border border-hairline rounded-xl p-5">
+          <h3 className="font-display text-base font-semibold tracking-tight">CORS & status simulation</h3>
+          <p className="mt-2 text-sm leading-6 text-secondary">
+            Every mock is CORS-enabled with correct Content-Type and status code. Simulate 200, 404, and 500 for
+            loading and error states.
+          </p>
+        </article>
+        <article className="bg-surface border border-hairline rounded-xl p-5">
+          <h3 className="font-display text-base font-semibold tracking-tight">Ephemeral by design</h3>
+          <p className="mt-2 text-sm leading-6 text-secondary">
+            Mocks live for 24 hours then auto-delete via Redis TTL. No database to clean, no account, 100KB max
+            — ideal for demos and QA.
+          </p>
+        </article>
+      </section>
+
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
 
       {/* Ft5 · Statement */}
       <footer className="w-full max-w-[68rem] mx-auto px-4 sm:px-6 mt-16 border-t border-hairline pt-10 pb-[max(var(--space-xl),env(safe-area-inset-bottom))] text-center">
